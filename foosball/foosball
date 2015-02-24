@@ -1,0 +1,22 @@
+#!/bin/sh
+# /etc/init.d/foosball
+
+case "$1" in
+  start)
+    echo "Starting Foosball Scoring"
+    (cd /home/pi;/home/pi/foos.py 2>&1) &
+    ;;
+  stop)
+    echo "Stopping Foosball Scoring"
+    # kill application you want to stop
+    LP_PID=`ps auxwww|grep foos.py|head -1|awk '{print $2}'`
+    kill -9 $LP_PID
+    ;;
+  *)
+    echo "Usage: /etc/init.d/foosball {start|stop}"
+    exit 1
+    ;;
+esac
+
+
+exit 0

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#
 #Foosball Scoring Controller
 #Scott Bennett 2/15
 #
