@@ -25,9 +25,11 @@ streams="Scott's Foosball Table:i"
 tokens="secrettoken"
 score1=0
 score2=0
-name1="Scott"
-name2="Emma"
+name1="Player1"
+name2="Player2"
 cmdQueue=Queue.Queue()
+
+requests.packages.urllib3.disable_warnings()
 
 #need start game button (record time of each shot for game stats)
 
@@ -36,7 +38,7 @@ goals=["airhorn.wav","buzzer.wav","boxing.wav","cheering.wav","glass.wav","whoop
 def send(msg):
     msg['time']=time.time()
     msgjson=json.dumps(msg)
-    requests.post('https://temporacloud.com/connection/clientSend', data={'streams':streams,'tokens':tokens,'message':msgjson})
+    requests.post('https://temporacloud.com/connection/clientSend', data={'streams':streams,'tokens':tokens,'message':msgjson},verify=False)
 
 def displayScore(s1,s2):
     s11=int(s1/10)
@@ -60,7 +62,7 @@ def startGame():
     score1=0
     score2=0
     send({'type':'start','name1':name1,'name2':name2})
-    displayScore(score1,score2)
+    updateScore()
     speak("starting game")
 
 def updateScore():
@@ -131,8 +133,8 @@ def runSpeechCmd(text):
     text=text.lower()
     if (text.find(" vs ")>-1):
         pos=text.find(" vs ")
-        name1=text[:pos]
-        name2=text[pos+4:]
+        name1=text[:pos].capitalize()
+        name2=text[pos+4:].capitalize()
         send({'type':'names','name1':name1,'name2':name2})
         speak("Game is now "+name1+" vs "+name2)
     elif (text=="start game"):
