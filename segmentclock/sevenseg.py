@@ -15,6 +15,7 @@ a = 8.5 # adapt to your servo
 b = 2 # adapt to your servo
 tune=False
 clock=False
+stow=False
 pwm=[0,0]
 
 def setup():
@@ -50,10 +51,10 @@ def showDigit(offset,num):
     last[offset+i]=0
   mask=mask>>1
 
-usage="Usage: python sevenseg.py [-h] [-t] [-c]"
+usage="Usage: python sevenseg.py [-h] [-t] [-c] [-s]"
 
 try:
-  opts, args = getopt.getopt(sys.argv[1:],"thc")
+  opts, args = getopt.getopt(sys.argv[1:],"thcs")
 except getopt.GetoptError:
   print(usage)
   sys.exit(2)
@@ -66,6 +67,8 @@ for opt, arg in opts:
   tune=True
  elif opt=='-c':
   clock=True
+ elif opt=='-s':
+  stow=True
 
 setup()
 
@@ -120,13 +123,21 @@ if tune:
   file.write(json.dumps(limits))
 elif clock:
   while True:
-   t=time.strftime("%H%M")
+   t=time.strftime("%I%M")
    z=ord('0')
-   showDigit(0,ord(t[0])-z)
+   if (ord(t[0])-z)==0:
+    showDigit(0,10)
+   else:
+    showDigit(0,ord(t[0])-z)
    showDigit(7,ord(t[1])-z)
    showDigit(16,ord(t[2])-z)
    showDigit(23,ord(t[3])-z)
    time.sleep(1)
+elif stow:
+ showDigit(0,10)
+ showDigit(7,10)
+ showDigit(16,10)
+ showDigit(23,10)
 else:
   for i in range(10000):
    n1=int(i/1000)
