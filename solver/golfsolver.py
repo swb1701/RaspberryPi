@@ -1,3 +1,4 @@
+#find solutions for golf packing puzzle -- Scott Bennett -- 7/29/19
 
 pieces=[
     ['p1',1,0,0,1,-1,-1],
