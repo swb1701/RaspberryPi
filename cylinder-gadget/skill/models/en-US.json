@@ -1,0 +1,120 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "cylinder light",
+          "intents": [
+              { "name": "MessageIntent",
+                "slots": [
+                {
+                    "name": "Phrase",
+                    "type": "PHRASES"
+                }
+                ],
+                "samples": [
+                    "display {Phrase}",
+                    "show {Phrase}",
+                    "print {Phrase}"
+                ]
+              },
+            { "name": "ClearIntent",
+              "samples": [
+                "clear display",
+                "clear message",
+                "clear"
+              ]
+            },
+            { "name": "NextIntent",
+              "samples": [
+                "next",
+                "next mode",
+                "next pattern"
+              ]
+            },
+            { "name": "ForegroundColorIntent",
+                "slots": [
+                {
+                    "name": "Color",
+                    "type": "AMAZON.Color"
+                }
+                ],
+                "samples": [
+                    "color {Color}",
+                    "set color {Color}",
+                    "set color to {Color}",
+                    "foreground {Color}",
+                    "set foreground {Color}",
+                    "set foreground color to {Color}",
+                    "set foreground color {Color}"
+                ]
+              },  
+              { "name": "BackgroundColorIntent",
+                "slots": [
+                {
+                    "name": "Color",
+                    "type": "AMAZON.Color"
+                }
+                ],
+                "samples": [
+                    "background color {Color}",
+                    "set background {Color}",
+                    "background {Color}",
+                    "set background color to {Color}",
+                    "background color to {Color}"
+                ]
+              },       
+              {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              }
+          ],
+          "types": [
+            {
+                    "name": "PHRASES",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "testing one two three"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a sample message"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a reminder of some sort"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "one two three four five"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nova labs raspberry pi meetup"
+                            }
+                        }
+                    ]
+            }          
+          ]
+      }
+  }
+}

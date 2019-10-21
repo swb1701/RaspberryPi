@@ -1,0 +1,31 @@
+{
+  "skillManifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "examplePhrases": [],
+          "keywords": [],
+          "name": "Cylinder Light"
+        }
+      },
+      "isAvailableWorldwide": true
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda"
+        },
+        "interfaces": [
+        {
+        "type": "CUSTOM_INTERFACE"
+        }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
