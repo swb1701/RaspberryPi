@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Photos 360</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h2>Automatically Photographed Objects</h2>
+    <ul id="objects">
+    </ul>
+  </body>
+  <script type="text/javascript" src="objects.js"></script>
+  <script>
+    var html="";
+    for(var i=0;i<objects.length;i++) {
+      html+='<li><a href="'+objects[i]+'/index.html">'+objects[i]+'</a></li>\n'
+    }
+    $('#objects').html(html);				      
+  </script>
+</html>  
