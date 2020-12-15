@@ -1,5 +1,5 @@
-Note: from the original author of the LightHouse files (Led and LedBase are my contributions)
-Body-Long.stl is from a commenter on the thingiverse project
+Note below if from the original author of the LightHouse files (Led2.scad and NewLEDBase2.stl are my contributions)
+Led-support.stl, Body-Long.stl is from a commenter on the thingiverse project (I used Body-Long in combination with NewLEDBase2.stl)
 
                    .:                     :,
 ,:::::::: ::`      :::                   :::                                          
