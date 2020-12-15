@@ -1,3 +1,8 @@
+#Simple illustration of sweeping lighthouse light for use with flexible LED panel
+#https://www.amazon.com/gp/product/B088BTXHRG/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1
+#and the 3D parts in the subdirectory
+#Scott Bennett, 12/15/20
+
 import time
 import board
 import neopixel
