@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>EyePi Video Stream</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>EyePi Video Stream</h1>
+    <p>Pupil:<input type="number" max="1.0" min="-1.0" step="0.1" name="pupil" id="pupil"/>
+      &nbsp;<button class="fbutton" id="reset" func="reset" data='' type="button">Reset</button>
+      <button class="fbutton" id="left" func="bound" data='{"bound":"left"}' type="button">Left</button>
+      <button class="fbutton" id="right" func="bound" data='{"bound":"right"}' type="button">Right</button>
+      <button class="fbutton" id="top" func="bound" data='{"bound":"top"}' type="button">Top</button>
+      <button class="fbutton" id="bottom" func="bound" data='{"bound":"bottom"}' type="button">Bottom</button>
+      <button class="fbutton" id="lid" func="toggleLid" data='' type="button">Toggle Lid</button>
+      <span id="coord"></span>
+    </p>
+    <img src="{{ url_for('video_feed') }}">
+    <script>
+      var lastMode=null;
+      $("#pupil").change(function() {
+	  val=$(this).val();
+	  $.ajax({
+	      type:'POST',
+	      url:"{{ url_for('pupil') }}",
+	      data: {pupil:val},
+	      dataType: "json"
+	  });
+	  lastMode=null;
+      });
+      $('img').click(function(e) {
+	  var offset=$(this).offset();
+	  x=e.pageX-offset.left;
+	  y=e.pageY-offset.top;
+	  mode=lastMode;
+	  $("#coord").html("(x,y)="+Math.trunc(x)+","+Math.trunc(y));
+	  $.ajax({
+	      type:'POST',
+	      url:"{{ url_for('pos') }}",
+	      data: {x:x,y:y,mode:mode},
+	      dataType: "json"
+	  });
+	  lastMode=null;
+      });
+      $(".fbutton").click(function() {
+	  var func=$(this).attr('func');
+	  console.log(func);
+	  var data=$(this).attr('data');
+	  console.log(data);
+	  var map={
+	      type:'POST',
+	      url:"{{ url_for('bound') }}".replace("bound",func),
+	      dataType: "json"};
+	  if (data.length>0) map['data']=JSON.parse(data);
+	  $.ajax(map);
+	  lastMode="left";
+      });
+    </script>
+  </body>
+</html>
